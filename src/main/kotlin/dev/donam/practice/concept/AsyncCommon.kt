@@ -1,59 +1,88 @@
 package dev.donam.practice.concept
 
+import kotlinx.coroutines.delay
+
 object BreakfastAsync {
-    fun pourCoffee(): Coffee {
+    suspend fun pourCoffee(): Coffee {
         println("========== pourCoffee: ${Thread.currentThread().name} ==========")
-        println("Pouring coffee")
+        (0..2).forEach {
+            println("Pouring coffee")
+            delay(1000)
+        }
         println("filled with coffee")
-        TODO()
+
+        return Coffee()
     }
 
-    fun fryEggs(count: Int): Egg {
+    suspend fun fryEggs(count: Int): Egg {
         println("========== fryEggs: ${Thread.currentThread().name} ==========")
-        println("Warming the egg pan...")
+        (0..2).forEach {
+            println("Warming the egg pan...")
+            delay(1000)
+        }
         println("cracking $count eggs")
-        println("cooking the eggs...")
+        (0..3).forEach {
+            println("cooking the eggs...")
+            delay(1000)
+        }
         println("Put eggs on plate")
-        TODO()
+
+        return Egg()
     }
 
-    fun fryBacon(slices: Int): Bacon {
+    suspend fun fryBacon(slices: Int): Bacon {
         println("========== fryBacon: ${Thread.currentThread().name} ==========")
         println("putting $slices slices of bacon in the pan")
-        println("cooking first side of bacon...")
+        (0..4).forEach {
+            println("cooking first side of bacon...")
+            delay(1000)
+        }
         println("flipping first side of bacon(s)")
-        println("cooking the second side of bacon...")
+        (0..4).forEach {
+            println("cooking the second side of bacon...")
+            delay(1000)
+        }
         println("Put bacon on plate")
-        TODO()
+
+        return Bacon()
     }
 
-    fun toastBread(slices: Int): Toast {
+    suspend fun toastBread(slices: Int): Toast {
         println("========== toastBread: ${Thread.currentThread().name} ==========")
         println("Putting ${slices} slices of bread in the toaster")
-        println("toasting...")
+        (0..4).forEach {
+            println("toasting...")
+            delay(1000)
+        }
         println("Remove toast from toaster")
-        TODO()
+
+        return Toast()
     }
 
-    fun Toast.applyJam(): Toast {
+    suspend fun Toast.applyJam(): Toast {
         println("========== applyJam: ${Thread.currentThread().name} ==========")
         println("Putting jam on the toast")
+        delay(1000)
         println("filled with jam")
-        TODO()
+        return Toast()
     }
 
-    fun Toast.applyButter(): Toast {
+    suspend fun Toast.applyButter(): Toast {
         println("========== applyButter: ${Thread.currentThread().name} ==========")
         println("Putting butter on the toast")
+        delay(1000)
         println("filled with butter")
-        TODO()
+        return Toast()
     }
 
 
-    fun pourOrangeJuice(): Juice {
+    suspend fun pourOrangeJuice(): Juice {
         println("========== pourOrangeJuice: ${Thread.currentThread().name} ==========")
-        println("Pouring orange juice")
+        (0..2).forEach {
+            println("Pouring orange juice")
+            delay(1000)
+        }
         println("filled with orange juice")
-        TODO()
+        return Juice()
     }
 }
