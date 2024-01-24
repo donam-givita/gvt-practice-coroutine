@@ -1,59 +1,88 @@
 package dev.donam.practice.concept
+import kotlinx.coroutines.delay
+
+val WAIT_MS_VALUE:Long = 1000
 
 object BreakfastAsync {
-    fun pourCoffee(): Coffee {
+    suspend fun pourCoffee(): Coffee {
         println("========== pourCoffee: ${Thread.currentThread().name} ==========")
-        println("Pouring coffee")
+        repeat((0..2).count()) {
+            println("Pouring coffee")
+            delay(WAIT_MS_VALUE)
+        }
         println("filled with coffee")
-        TODO()
+        return Coffee()
     }
 
-    fun fryEggs(count: Int): Egg {
+    suspend fun fryEggs(count: Int): Egg {
         println("========== fryEggs: ${Thread.currentThread().name} ==========")
-        println("Warming the egg pan...")
+        repeat((0..2).count()) {
+            println("Warming the egg pan...")
+            delay(WAIT_MS_VALUE)
+        }
         println("cracking $count eggs")
-        println("cooking the eggs...")
+        repeat((0..3).count()) {
+            println("cooking the eggs...")
+            delay(WAIT_MS_VALUE)
+        }
         println("Put eggs on plate")
-        TODO()
+
+        return Egg()
     }
 
-    fun fryBacon(slices: Int): Bacon {
+    suspend fun fryBacon(slices: Int): Bacon {
         println("========== fryBacon: ${Thread.currentThread().name} ==========")
         println("putting $slices slices of bacon in the pan")
-        println("cooking first side of bacon...")
+        repeat((0..4).count()) {
+            println("cooking first side of bacon...")
+            delay(WAIT_MS_VALUE)
+        }
         println("flipping first side of bacon(s)")
-        println("cooking the second side of bacon...")
+        repeat((0..4).count()) {
+            println("cooking the second side of bacon...")
+            delay(WAIT_MS_VALUE)
+        }
         println("Put bacon on plate")
-        TODO()
+
+        return Bacon()
     }
 
-    fun toastBread(slices: Int): Toast {
+    suspend fun toastBread(slices: Int): Toast {
         println("========== toastBread: ${Thread.currentThread().name} ==========")
         println("Putting ${slices} slices of bread in the toaster")
-        println("toasting...")
+        repeat((0..4).count()) {
+            println("toasting...")
+            delay(WAIT_MS_VALUE)
+        }
         println("Remove toast from toaster")
-        TODO()
+
+        return Toast()
     }
 
-    fun Toast.applyJam(): Toast {
+    suspend fun Toast.applyJam(): Toast {
         println("========== applyJam: ${Thread.currentThread().name} ==========")
         println("Putting jam on the toast")
+        delay(WAIT_MS_VALUE)
         println("filled with jam")
-        TODO()
+        return Toast()
     }
 
-    fun Toast.applyButter(): Toast {
+    suspend fun Toast.applyButter(): Toast {
         println("========== applyButter: ${Thread.currentThread().name} ==========")
         println("Putting butter on the toast")
+        delay(WAIT_MS_VALUE)
         println("filled with butter")
-        TODO()
+        return Toast()
     }
 
 
-    fun pourOrangeJuice(): Juice {
+    suspend fun pourOrangeJuice(): Juice {
         println("========== pourOrangeJuice: ${Thread.currentThread().name} ==========")
-        println("Pouring orange juice")
+        repeat((0..2).count()) {
+            println("Pouring orange juice")
+            delay(WAIT_MS_VALUE)
+        }
         println("filled with orange juice")
-        TODO()
+        return Juice()
     }
 }
