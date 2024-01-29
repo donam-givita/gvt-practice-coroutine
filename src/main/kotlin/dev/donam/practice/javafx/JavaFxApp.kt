@@ -9,6 +9,13 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import javafx.stage.Stage
 import java.util.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+
 
 class HelloFX : Application() {
     override fun start(primaryStage: Stage) {
@@ -18,8 +25,17 @@ class HelloFX : Application() {
 
         val btnMakeBreakfast = Button("make breakfast")
         btnMakeBreakfast.onAction = EventHandler {
-            Thread.sleep(3000)
-            textArea.appendText("TODO Something\n")
+
+            val deffer = CoroutineScope(Dispatchers.IO).async {
+                println("Await Start")
+                delay(3000)
+                println("Await END")
+
+                textArea.appendText("TODO Something \n")
+                true
+            }
+
+            println("END $deffer ")
         }
         val btnRandomUuid = Button("gen UUID")
         btnRandomUuid.onAction = EventHandler {
