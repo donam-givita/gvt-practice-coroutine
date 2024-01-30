@@ -13,7 +13,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 
@@ -26,17 +28,15 @@ class HelloFX : Application() {
         val btnMakeBreakfast = Button("make breakfast")
         btnMakeBreakfast.onAction = EventHandler {
 
-            val deffer = CoroutineScope(Dispatchers.IO).async {
+            CoroutineScope(Dispatchers.IO).launch {
                 println("Await Start")
                 delay(3000)
                 println("Await END")
 
                 textArea.appendText("TODO Something \n")
-                true
             }
-
-            println("END $deffer ")
         }
+
         val btnRandomUuid = Button("gen UUID")
         btnRandomUuid.onAction = EventHandler {
             textArea.appendText("${UUID.randomUUID()}\n")
