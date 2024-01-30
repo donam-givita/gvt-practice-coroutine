@@ -16,6 +16,15 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.7.3")
 
+    implementation("io.vertx:vertx-core:4.5.1")
+    implementation("io.vertx:vertx-web:4.5.1")
+    implementation("io.vertx:vertx-lang-kotlin:4.5.1")
+    implementation("io.vertx:vertx-lang-kotlin-coroutines:4.5.1")
+
+    implementation("org.apache.logging.log4j:log4j-api-kotlin:1.4.0")
+    implementation("org.apache.logging.log4j:log4j-core:2.22.1")
+    implementation("com.lmax:disruptor:3.2.0")
+
     testImplementation(kotlin("test"))
 }
 
