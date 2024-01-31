@@ -16,6 +16,13 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.7.3")
 
+    implementation("io.vertx:vertx-core:4.5.1")
+    implementation("io.vertx:vertx-lang-kotlin:4.5.1")
+    implementation("io.vertx:vertx-web:4.5.1")
+
+    implementation("io.vertx:vertx-lang-kotlin-coroutines:4.5.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
+
     testImplementation(kotlin("test"))
 }
 
