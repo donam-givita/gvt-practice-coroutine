@@ -13,15 +13,21 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.7.3")
-
-    implementation("io.vertx:vertx-core:4.5.1")
-    implementation("io.vertx:vertx-lang-kotlin:4.5.1")
-    implementation("io.vertx:vertx-web:4.5.1")
-
-    implementation("io.vertx:vertx-lang-kotlin-coroutines:4.5.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
+//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.7.3")
+
+    val vertxVersion = "4.5.1"
+
+    implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
+    implementation("io.vertx:vertx-core")
+    implementation("io.vertx:vertx-config")
+    implementation("io.vertx:vertx-lang-kotlin")
+    implementation("io.vertx:vertx-lang-kotlin-coroutines")
+    implementation("io.vertx:vertx-web")
+
+    implementation("org.apache.logging.log4j:log4j-core:2.22.0")
+    implementation("org.apache.logging.log4j:log4j-api-kotlin:1.3.0")
+    implementation("com.lmax:disruptor:3.4.4")
 
     testImplementation(kotlin("test"))
 }
