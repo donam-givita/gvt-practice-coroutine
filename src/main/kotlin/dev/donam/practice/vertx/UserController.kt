@@ -26,7 +26,7 @@ class UserController: CoroutineVerticle(), CoroutineEventBusSupport, Logging {
         val response =
             vertx
                 .eventBus()
-                .request<String>("${UserDbAdapter.path}.selectUser", userId)
+                .request<String>("${MockBigqueryVerticle.path}.selectUser", userId)
                 .coAwait()
 
         message.reply(response.body())

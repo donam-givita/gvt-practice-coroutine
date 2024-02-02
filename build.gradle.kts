@@ -23,7 +23,13 @@ dependencies {
 
     implementation("org.apache.logging.log4j:log4j-api-kotlin:1.4.0")
     implementation("org.apache.logging.log4j:log4j-core:2.22.1")
-    implementation("com.lmax:disruptor:3.2.0")
+    implementation("com.lmax:disruptor:4.0.0")
+
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+
+    implementation("io.vertx:vertx-pg-client:4.5.2")
+    implementation("com.ongres.scram:client:2.1")
 
     testImplementation(kotlin("test"))
 }

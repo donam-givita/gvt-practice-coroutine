@@ -1,12 +1,14 @@
 package dev.donam.practice.vertx
 
 import io.vertx.core.eventbus.Message
+import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.CoroutineEventBusSupport
 import io.vertx.kotlin.coroutines.CoroutineVerticle
+import io.vertx.kotlin.coroutines.coroutineEventBus
 import kotlinx.coroutines.delay
 import org.apache.logging.log4j.kotlin.Logging
 
-class UserDbAdapter: CoroutineVerticle(), CoroutineEventBusSupport, Logging {
+class MockBigqueryVerticle: CoroutineVerticle(), Logging {
     companion object {
         val path = this::class.java.toString().lowercase()
     }
@@ -14,18 +16,18 @@ class UserDbAdapter: CoroutineVerticle(), CoroutineEventBusSupport, Logging {
     override suspend fun start() {
         logger.info("start")
 
-        vertx.eventBus().coConsumer("${path}.selectUser") {
-            selectUser(it)
+        coroutineEventBus {
+            vertx.eventBus().coConsumer("${path}.createUser") {
+                createUser(it)
+            }
         }
     }
 
-    private suspend fun selectUser(message: Message<String>) {
+    private suspend fun createUser(message: Message<JsonObject>) {
         logger.info("coConsumer received: ${message.body()}")
 
         delay(100)
 
-        val userId = message.body().toLong()
-
-        message.reply("{\"userId\": \"${userId}\", \"name\": \"이민섭+${userId}\"}")
+        message.reply(message.body())
     }
 }
