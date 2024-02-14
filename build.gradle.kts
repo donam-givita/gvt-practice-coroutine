@@ -23,6 +23,8 @@ dependencies {
     implementation("io.vertx:vertx-lang-kotlin")
     implementation("io.vertx:vertx-lang-kotlin-coroutines")
     implementation("io.vertx:vertx-web")
+    implementation("io.vertx:vertx-pg-client:4.5.2")
+    implementation("com.ongres.scram:client:2.1")
 
     implementation("org.apache.logging.log4j:log4j-core:2.22.0")
     implementation("org.apache.logging.log4j:log4j-api-kotlin:1.3.0")

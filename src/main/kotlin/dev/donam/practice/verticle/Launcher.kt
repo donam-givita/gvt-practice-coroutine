@@ -16,4 +16,8 @@ fun main() {
         MockBigqueryVerticle::class.java.name,
         deploymentOptionsOf(threadingModel = ThreadingModel.WORKER)
     )
+    vertx.deployVerticle(
+        PostgresVerticle::class.java.name,
+        deploymentOptionsOf(threadingModel = ThreadingModel.WORKER)
+    )
 }

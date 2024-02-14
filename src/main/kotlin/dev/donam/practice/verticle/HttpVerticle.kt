@@ -10,10 +10,10 @@ import org.apache.logging.log4j.kotlin.Logging
 
 class HttpVerticle: CoroutineVerticle(), CoroutineRouterSupport, Logging {
     override suspend fun start() {
-        println( "Http Verticle Start: ${Thread.currentThread().name}" )
+        logger.info( "Http Verticle Start: ${Thread.currentThread().name}" )
         vertx.createHttpServer()
             .requestHandler(router())
-            .listen(8080)
+            .listen(8085)
             .coAwait()
     }
 
@@ -27,6 +27,26 @@ class HttpVerticle: CoroutineVerticle(), CoroutineRouterSupport, Logging {
 
             it.response().putHeader("contentType", "application/json").setStatusCode(201)
             it.response().end(eventBusRes.body().toBuffer())
+        }
+
+        get("/api/v1/postgres/:id").coRespond {
+            val getEventBusRes = vertx.eventBus().request<JsonObject>("getPostgres", it.pathParam("id")).coAwait()
+            it.response()
+                .putHeader("content-type", "application/json;")
+                .setStatusCode(200)
+                .end(getEventBusRes.body().toString())
+        }
+
+        post("/api/v1/postgres").coRespond {
+            val req = it.request().body().coAwait()
+
+            val eventBusRes = vertx.eventBus().request<JsonObject>("insertPostgres", req.toJsonObject()).coAwait()
+            println( "Received back: ${eventBusRes.body()}" )
+
+            it.response()
+                .putHeader("contentType", "application/json")
+                .setStatusCode(201)
+                .end(eventBusRes.body().toBuffer())
         }
 
         coErrorHandler(404) { rc ->
